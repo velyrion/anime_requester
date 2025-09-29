@@ -24,9 +24,9 @@ function getUrl(search='', size='10', genre='', sortBy='', sortOrder='') {
     return url+size+search+genre+sortBy+sortOrder;
 }
 
-async function getAnime() {
+async function getAnime(url) {
     try {
-        const response = await fetch(getUrl(), options);
+        const response = await fetch(url, options);
         const result = await response.json();
         return result.data;
     } catch (error) {
@@ -36,16 +36,23 @@ async function getAnime() {
 
 function addCards(animes) {
     animes.forEach(anime => {
-        cards.innerHTML += "<div class='card'> \
-            <h3>${anime.title}</h3> \
-            <img src=${'"+anime.image+"'} alt=${'"+anime.title+"'} /> \
-            <p>${anime.synopsis}</p> \
-          </div>";
+        let genres = anime.genres.join(" / ");
+
+        cards.innerHTML += `
+        <div class="card">
+            <h3>${anime.title}</h3>
+            <img src="${anime.image}" alt="${anime.title}" />
+            <p><span class="tagCard">Descriptif: </span>${anime.synopsis}</p>
+            <p><span class="tagCard">Genres: </span>${genres}</p>
+            <p><span class="tagCard">Classement: </span>${anime.ranking}</p>
+            <p><span class="tagCard">Nombre d'épisodes: </span>${anime.episodes}</p>
+        </div>
+        `;
     });
 }
 
 /*END OF FONCTIONS*/
 
-getAnime();
-
-//addCards(getAnime());
+getAnime(getUrl()).then(animes => {
+  addCards(animes);
+});

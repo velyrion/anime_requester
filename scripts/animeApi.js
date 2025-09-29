@@ -15,13 +15,17 @@ const cards = document.getElementById("cards");
 /*END OF HTML VARIABLES*/
 
 /*FONCTIONS*/
-function getUrl(search='', size='10', genre='', sortBy='', sortOrder='') {
+
+function getUrl(search='', size='10', genres='', sortBy='', sortOrder='') {
     if (search != '') search = '&search='+search;
     if (size != '') size = '&size='+size;
-    if (genre != '') genre = '&genres='+genre;
+    if (genres != '') {
+        // replace coma with %2C
+        genres = '&genres='+genres.split(',').join('%2C');
+    }
     if (sortBy != '') sortBy = '&sortBy='+sortBy;
     if (sortOrder != '') sortOrder = '&sortOrder='+sortOrder;
-    return url+size+search+genre+sortBy+sortOrder;
+    return url+size+search+genres+sortBy+sortOrder;
 }
 
 async function getAnime(url) {
@@ -40,12 +44,15 @@ function addCards(animes) {
 
         cards.innerHTML += `
         <div class="card">
-            <h3>${anime.title}</h3>
-            <img src="${anime.image}" alt="${anime.title}" />
+        <h3>${anime.title}</h3>
+        <img src="${anime.image}" alt="${anime.title}" />
+        
+        <div class="overlay">
             <p><span class="tagCard">Descriptif: </span>${anime.synopsis}</p>
             <p><span class="tagCard">Genres: </span>${genres}</p>
             <p><span class="tagCard">Classement: </span>${anime.ranking}</p>
             <p><span class="tagCard">Nombre d'épisodes: </span>${anime.episodes}</p>
+        </div>
         </div>
         `;
     });

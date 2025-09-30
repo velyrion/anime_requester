@@ -6,6 +6,7 @@
     <title>Accueil</title>
     <link rel="stylesheet" href="styles/cardsStyle.css">
     <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/filtreStyle.css">
 </head>
 <body>
     <header>
@@ -13,32 +14,35 @@
     </header>
 
     <section>
-        <form id="search-form" role="search" aria-label="Rechercher un anime" novalidate>
-            <div class="row"><!-- type de recherche -->
-                <label for="typeRecherche">Choisissez un type de recherche :</label><br />
-                <select id="typeRecherche" name="typeRecherche">
-                    <option value="titre">Recherche par titre</option>
-                    <option value="genre">Recherche par genre</option>
-                </select>
-            </div>
-            
-            <br>
+        <div class="container">
+            <!-- Sidebar filtres -->
+            <aside class="sidebar">
+                <form id="filter-form" aria-label="Filtrer les animes" novalidate>
+                    <h3>Genres</h3>
+                    <label><input type="checkbox" name="genre" value="action"> Action</label>
+                    <label><input type="checkbox" name="genre" value="comedy"> Comédie</label>
+                    <label><input type="checkbox" name="genre" value="drama"> Drame</label>
+                    <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label>
+                    <label><input type="checkbox" name="genre" value="sci-fi"> Sci-Fi</label>
 
-            <label for="parametre">Paramètre: </label>
-            <input type="text">
+                    <h3>Classement</h3>
+                    <label><input type="checkbox" name="rating" value="9"> ≥ 9</label>
+                    <label><input type="checkbox" name="rating" value="8"> ≥ 8</label>
+                    <label><input type="checkbox" name="rating" value="7"> ≥ 7</label>
+                    <label><input type="checkbox" name="rating" value="6"> ≥ 6</label>
 
-            <br>
+                    <button type="submit">Appliquer</button>
+                </form>
+            </aside>
 
-            <input type="submit" value="Rechercher">
-            <input type="submit" value="Effacer">
-        </form>
-
-        <div id="cards">
-        <!--
-        tout mis en js
-        <div class="card"></div>
-        -->
+            <!-- Contenu principal -->
+            <main class="main-content">
+                <div id="cards">
+                    <!-- Les cartes d'anime seront insérées ici -->
+                </div>
+            </main>
         </div>
+
     </section>
 
     <footer>

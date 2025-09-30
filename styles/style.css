@@ -28,8 +28,7 @@ header h1 {
 
 /* ----- Formulaire ----- */
 section {
-    max-width: 600px;
-    margin: 0 auto;
+    margin: 0 5%;
     background-color: white;
     padding: 30px;
     border-radius: 10px;

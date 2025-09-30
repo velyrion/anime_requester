@@ -1,5 +1,5 @@
 /*API VARIABLES*/
-const apiKey = 'a98487f17emshf797434733b889cp124f03jsn461d3ecc651c';
+const apiKey = ' 9b2c8a9f1bmsh391cd208f24342ap145fc7jsn3eca5246cc17';
 const url = 'https://anime-db.p.rapidapi.com/anime?page=1';
 const options = {
 	method: 'GET',

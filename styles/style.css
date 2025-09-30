@@ -13,51 +13,8 @@ body {
     line-height: 1.6;
 }
 
-/* ----- Header ----- */
-header {
-    background-color: #2d2d70;
-    color: white;
-    padding: 15px 0;
-    text-align: center;
-    margin-bottom: 40px;
-}
-
-header h1 {
-    font-size: 2.5em;
-}
-
-/* ----- Formulaire ----- */
-section {
-    margin: 0 5%;
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-select,
-input[type="text"] {
-    padding: 10px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 10;
-}
-
 /* ----- Boutons ----- */
 input[type="submit"] {
-
     background-color: #2d2d70;
     color: white;
     border: none;

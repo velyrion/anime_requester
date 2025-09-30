@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/cardsStyle.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/filtreStyle.css">
-    <link rel="stylesheet" href="style_navbar.css">
+    <link rel="stylesheet" href="styles/style_navbar.css">
 </head>
 <body>
     <header> 
@@ -27,32 +27,63 @@
         <div class="container">
             <!-- Sidebar filtres -->
             <aside class="sidebar">
+                <h2>Filtres</h2>
                 <form id="filter-form" aria-label="Filtrer les animes" novalidate>
-                    <h3>Genres</h3>
-                    <label><input type="checkbox" name="genre" value="action"> Action</label>
-                    <label><input type="checkbox" name="genre" value="comedy"> Comédie</label>
-                    <label><input type="checkbox" name="genre" value="drama"> Drame</label>
-                    <label><input type="checkbox" name="genre" value="fantasy"> Fantasy</label>
-                    <label><input type="checkbox" name="genre" value="sci-fi"> Sci-Fi</label>
+                    <div class="filter-group">
+                        <h3>Genres</h3>
+                        <label class="checkbox-container">Action
+                            <input type="checkbox" name="genre" value="action">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Comédie
+                            <input type="checkbox" name="genre" value="comedy">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Drame
+                            <input type="checkbox" name="genre" value="drama">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Fantasy
+                            <input type="checkbox" name="genre" value="fantasy">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Sci-Fi
+                            <input type="checkbox" name="genre" value="sci-fi">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
 
-                    <h3>Classement</h3>
-                    <label><input type="checkbox" name="rating" value="9"> ≥ 9</label>
-                    <label><input type="checkbox" name="rating" value="8"> ≥ 8</label>
-                    <label><input type="checkbox" name="rating" value="7"> ≥ 7</label>
-                    <label><input type="checkbox" name="rating" value="6"> ≥ 6</label>
+                    <div class="filter-group">
+                        <h3>Classement</h3>
+                        <label class="checkbox-container">≥ 9
+                            <input type="checkbox" name="rating" value="9">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">≥ 8
+                            <input type="checkbox" name="rating" value="8">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">≥ 7
+                            <input type="checkbox" name="rating" value="7">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">≥ 6
+                            <input type="checkbox" name="rating" value="6">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
 
-                    <button type="submit">Appliquer</button>
+                    <button type="submit" class="btn-apply">Appliquer</button>
                 </form>
             </aside>
 
             <!-- Contenu principal -->
             <main class="main-content">
-                <div id="cards">
+                <div id="cards" class="cards-grid">
                     <!-- Les cartes d'anime seront insérées ici -->
                 </div>
             </main>
         </div>
-
     </section>
 
     <footer>

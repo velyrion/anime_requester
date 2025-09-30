@@ -1,28 +1,146 @@
+/* Container Flex */
 .container {
     display: flex;
+    min-height: 100vh;
 }
 
-/* Sidebar */
+/* Sidebar moderne */
 .sidebar {
-    width: 250px;
-    padding: 20px;
-    background-color: #f5f5f5;
-    border-right: 1px solid #ddd;
-    height: 100vh;
-    box-sizing: border-box;
+    width: 280px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
 }
 
-.sidebar h3 {
-    margin-top: 0;
+.sidebar h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #111;
 }
 
-.sidebar label {
-    display: block;
+.filter-group h3 {
+    font-size: 18px;
     margin-bottom: 10px;
+    color: #555;
+}
+
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.checkmark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border-radius: 5px;
+    transition: 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #ddd;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: #4f46e5;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    left: 7px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Bouton moderne */
+.btn-apply {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4f46e5;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-apply:hover {
+    background-color: #3730a3;
 }
 
 /* Contenu principal */
 .main-content {
     flex: 1;
-    padding: 20px;
+    padding: 30px;
+}
+
+/* Grille de cartes */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+/* Carte d’anime moderne */
+.card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 15px;
+}
+
+.card-content h4 {
+    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.card-content p {
+    font-size: 14px;
+    color: #666;
 }

@@ -9,30 +9,18 @@
 </head>
 <body>
     <header>
-        <h1>ANIME REQUESTER</h1>
+        
+            <form>
+                <input type="search" placeholder="Search here ...">
+            <i class="fa fa-search"></i>
+            </form>
+        
     </header>
 
     <section>
-        <form id="search-form" role="search" aria-label="Rechercher un anime" novalidate>
-            <div class="row"><!-- type de recherche -->
-                <label for="typeRecherche">Choisissez un type de recherche :</label><br />
-                <select id="typeRecherche" name="typeRecherche">
-                    <option value="titre">Recherche par titre</option>
-                    <option value="genre">Recherche par genre</option>
-                </select>
-            </div>
-            
-            <br>
-
-            <label for="parametre">Paramètre: </label>
-            <input type="text">
-
-            <br>
-
-            <input type="submit" value="Rechercher">
-            <input type="submit" value="Effacer">
-        </form>
-
+        <div class="header-container">
+            <h1 id="titre">ANIME REQUESTER</h1>
+        </div>
         <div id="cards">
         <!--
         tout mis en js

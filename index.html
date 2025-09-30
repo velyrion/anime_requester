@@ -13,12 +13,14 @@
     </header>
 
     <section>
-        <form>
-            <label for="typeRecherche">Choisissez un type de recherche: </label>
-            <select id="typeRecherche" name="typeRecherche">
-                <option value="titre">Recherche par titre</option>
-                <option value="genre">Recherche par genre</option>
-            </select>
+        <form id="search-form" role="search" aria-label="Rechercher un anime" novalidate>
+            <div class="row"><!-- type de recherche -->
+                <label for="typeRecherche">Choisissez un type de recherche :</label><br />
+                <select id="typeRecherche" name="typeRecherche">
+                    <option value="titre">Recherche par titre</option>
+                    <option value="genre">Recherche par genre</option>
+                </select>
+            </div>
             
             <br>
 
@@ -29,7 +31,6 @@
 
             <input type="submit" value="Rechercher">
             <input type="submit" value="Effacer">
-
         </form>
 
         <div id="cards">

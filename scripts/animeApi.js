@@ -60,6 +60,6 @@ function addCards(animes) {
 
 /*END OF FONCTIONS*/
 
-getAnime(getUrl()).then(animes => {
+/*getAnime(getUrl()).then(animes => {
   addCards(animes);
-});
+});*/

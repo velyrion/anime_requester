@@ -1,10 +1,6 @@
-/* HTML VARIABLES */
+/* HTML Variables */
 const slider = document.getElementById('rating-slider');
 const ratingValue = document.getElementById('rating-value');
-
-slider.addEventListener('input', () => {
-    ratingValue.textContent = `≥ ${slider.value}`;
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const filterForm = document.getElementById('filter-form');
@@ -12,21 +8,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const navSearchForm = document.querySelector('.nav-search');
 
   if (!filterForm || !cardsContainer) {
-    console.warn('[formulaire.js] Impossible de trouver le formulaire ou la zone des cartes.');
+    console.warn('Filter form or cards container not found.');
     return;
   }
 
   if (typeof getUrl !== 'function' || typeof getAnime !== 'function' || typeof addCards !== 'function') {
-    console.warn('[formulaire.js] Les helpers API ne sont pas disponibles.');
+    console.warn('API helper functions are not available.');
     return;
   }
 
+  /* Status line element to show messages */
   const statusLine = document.createElement('p');
   statusLine.className = 'cards-status';
   statusLine.hidden = true;
-  statusLine.textContent = 'Chargement des animes...';
+  statusLine.textContent = 'Loading animes...';
   cardsContainer.parentElement.insertBefore(statusLine, cardsContainer);
 
+  /* Map form genre values to API genre names */
   const apiGenreMap = {
     action: 'Action',
     comedy: 'Comedy',
@@ -36,32 +34,36 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const toApiGenre = genreValue => {
-    if (typeof genreValue !== 'string') {
-      return '';
-    }
-    const trimmedValue = genreValue.trim().toLowerCase();
-    return apiGenreMap[trimmedValue] || trimmedValue.charAt(0).toUpperCase() + trimmedValue.slice(1);
+    if (!genreValue) return '';
+    const trimmed = genreValue.trim().toLowerCase();
+    return apiGenreMap[trimmed] || trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
   };
 
+  /* Current filter state */
   const filterState = {
     searchTerm: '',
     genres: [],
-    ratingMin: null,
+    ratingMin: Number(slider.value),
     size: 40,
     sortBy: 'ranking',
     sortOrder: 'asc'
   };
 
-  const toggleStatus = (message = '') => {
-    statusLine.textContent = message;
-    statusLine.hidden = message === '';
+  /* Update rating slider label */
+  slider.addEventListener('input', () => {
+    ratingValue.textContent = `≥ ${slider.value}`;
+    filterState.ratingMin = Number(slider.value);
+  });
+
+  /* Helper to show/hide status messages */
+  const toggleStatus = message => {
+    statusLine.textContent = message || '';
+    statusLine.hidden = !message;
   };
 
+  /* Refresh anime list based on current filters */
   const refreshList = async () => {
-    const apiGenres = filterState.genres
-      .map(toApiGenre)
-      .filter(Boolean);
-
+    const apiGenres = filterState.genres.map(toApiGenre).filter(Boolean);
     const requestUrl = getUrl(
       filterState.searchTerm,
       String(filterState.size),
@@ -70,61 +72,78 @@ document.addEventListener('DOMContentLoaded', () => {
       filterState.sortOrder
     );
 
-    toggleStatus('Chargement des animes...');
+    toggleStatus('Loading animes...');
     cardsContainer.innerHTML = '';
 
     try {
       const animes = await getAnime(requestUrl) || [];
-      const normalizedSelectedGenres = apiGenres.map(genre => genre.toLowerCase());
+      const selectedGenresLower = apiGenres.map(g => g.toLowerCase());
 
-      const filteredAnimes = animes.filter(anime => {
-        const rankingValue = typeof anime.ranking === 'number' ? anime.ranking : Number(anime.ranking);
-        const matchesRating = filterState.ratingMin === null || (Number.isFinite(rankingValue) && rankingValue >= filterState.ratingMin);
-
-        const matchesGenres = !normalizedSelectedGenres.length || normalizedSelectedGenres.every(selectedGenre =>
-          Array.isArray(anime.genres) && anime.genres.some(animeGenre => String(animeGenre).toLowerCase() === selectedGenre)
+      /* Filter animes by slider rating and selected genres */
+      const filtered = animes.filter(anime => {
+        const ranking = Number(anime.ranking);
+        const matchesRating = !isNaN(ranking) && ranking >= filterState.ratingMin;
+        const matchesGenres = !selectedGenresLower.length || selectedGenresLower.every(
+          genre => anime.genres.some(g => g.toLowerCase() === genre)
         );
-
         return matchesRating && matchesGenres;
       });
 
-      if (!filteredAnimes.length) {
-        toggleStatus('Aucun anime ne correspond aux filtres selectionnes.');
+      if (!filtered.length) {
+        toggleStatus('No animes match the selected filters.');
         return;
       }
 
       toggleStatus();
-      addCards(filteredAnimes);
-    } catch (error) {
-      console.error('Erreur lors de la recuperation des animes', error);
-      toggleStatus('Impossible de recuperer les animes pour le moment.');
+      addCards(filtered);
+    } catch (err) {
+      console.error('Error fetching animes:', err);
+      toggleStatus('Unable to fetch animes at the moment.');
     }
   };
 
-  filterForm.addEventListener('submit', event => {
-    event.preventDefault();
+  /* Handle filter form submission */
+  filterForm.addEventListener('submit', e => {
+    e.preventDefault();
     const formData = new FormData(filterForm);
-
     filterState.genres = formData.getAll('genre');
-
-    const ratingChoices = formData.getAll('rating')
-      .map(value => Number(value))
-      .filter(value => Number.isFinite(value));
-
-    filterState.ratingMin = ratingChoices.length ? Math.max(...ratingChoices) : null;
-
     refreshList();
   });
 
+  /* Handle navbar search submission */
   if (navSearchForm) {
     const searchInput = navSearchForm.querySelector('input[type="search"]');
-
-    navSearchForm.addEventListener('submit', event => {
-      event.preventDefault();
+    navSearchForm.addEventListener('submit', e => {
+      e.preventDefault();
       filterState.searchTerm = searchInput ? searchInput.value.trim() : '';
       refreshList();
     });
   }
 
+  /* Initial load */
+  refreshList();
+});
+
+const resetButton = document.getElementById('reset-filters');
+
+resetButton.addEventListener('click', () => {
+  // Reset genres checkboxes
+  const genreCheckboxes = filterForm.querySelectorAll('input[name="genre"]');
+  genreCheckboxes.forEach(cb => cb.checked = false);
+  filterState.genres = [];
+
+  // Reset rating slider
+  slider.value = 7; // ou la valeur par défaut que tu veux
+  ratingValue.textContent = `≥ ${slider.value}`;
+  filterState.ratingMin = Number(slider.value);
+
+  // Reset search term
+  if (navSearchForm) {
+    const searchInput = navSearchForm.querySelector('input[type="search"]');
+    if (searchInput) searchInput.value = '';
+    filterState.searchTerm = '';
+  }
+
+  // Refresh the list
   refreshList();
 });

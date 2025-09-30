@@ -7,10 +7,20 @@
     <link rel="stylesheet" href="styles/cardsStyle.css">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/filtreStyle.css">
+    <link rel="stylesheet" href="style_navbar.css">
 </head>
 <body>
-    <header>
-        <h1>ANIME REQUESTER</h1>
+    <header> 
+        <nav class="navbar">
+            <div class="nav-logo">
+                <img src="images/logo.png" alt="Anime Requester logo">
+            </div>
+            <h1 class="nav-title">Anime Requester</h1>
+            <form class="nav-search" action="#" method="get">
+                <input type="search" name="q" placeholder="Rechercher un anime..." aria-label="Rechercher">
+                <button type="submit">Chercher</button>
+            </form>
+        </nav>
     </header>
 
     <section>

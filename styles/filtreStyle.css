@@ -2,6 +2,7 @@
 .container {
     display: flex;
     min-height: 100vh;
+    margin: 1%;
 }
 
 /* Sidebar moderne */

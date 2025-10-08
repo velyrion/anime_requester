@@ -81,6 +81,12 @@
   color: #ffcc00; /* labels contrastés */
 }
 
+.cards-status {
+  margin-top: auto; /* pousse le statut en bas */
+  font-weight: bold;
+  text-align: center;
+}
+
 /* === RESPONSIVE === */
 
 /* Tablettes */

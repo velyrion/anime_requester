@@ -25,7 +25,6 @@
 
     <section>
         <div class="container">
-            <!-- Sidebar filtres -->
             <aside class="sidebar">
                 <h2>Filtres</h2>
                 <form id="filter-form" aria-label="Filtrer les animes" novalidate>
@@ -76,6 +75,11 @@
                 </form>
             </aside>
 
+            <!-- Sidebar filtres -->
+            <button id="toggle-sidebar" aria-label="Ouvrir le menu" class="hamburger-menu">
+                ☰
+            </button>
+
             <!-- Contenu principal -->
             <main class="main-content">
                 <div id="cards" class="cards-grid">
@@ -91,5 +95,6 @@
 
     <script src="scripts/animeApi.js"></script>
     <script src="scripts/formulaire.js"></script>
+    <script src="scripts/filtre.js"></script>
 </body>
 </html>

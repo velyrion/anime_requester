@@ -3,18 +3,32 @@
     display: flex;
     min-height: 100vh;
     margin: 1%;
+    transition: margin-left 0.3s ease; /* Transition pour ajuster le contenu */
+    z-index: 0;
 }
 
 /* Sidebar moderne */
 .sidebar {
+    overflow: hidden;
     width: 280px;
     padding: 30px;
     background-color: #fff;
-    box-shadow: 2px 0 8px rgba(0,0,0,0.1);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
     position: sticky;
     top: 0;
+    transition: transform 0.3s ease; /* Transition pour l'ouverture/fermeture */
+    z-index: 0;
 }
 
+.sidebar.closed {
+    transform: translateX(-100%);
+}
+
+.sidebar.closed ~ .hamburger-menu {
+    left: 20px;
+}
+
+/* Titre et groupes de filtres */
 .sidebar h2 {
     margin-bottom: 20px;
     font-size: 24px;
@@ -27,6 +41,7 @@
     color: #555;
 }
 
+/* Checkbox */
 .checkbox-container {
     display: block;
     position: relative;
@@ -82,7 +97,7 @@
     transform: rotate(45deg);
 }
 
-/* Bouton moderne */
+/* Boutons */
 .btn-apply {
     margin-top: 20px;
     padding: 10px 20px;
@@ -99,8 +114,73 @@
     background-color: #3730a3;
 }
 
+.btn-reset {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #e5e5e5;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-reset:hover {
+    background-color: #ccc;
+}
+
 /* Contenu principal */
 .main-content {
     flex: 1;
     padding: 30px;
+    transition: margin-left 0.3s ease; /* Transition pour ajuster le contenu */
+}
+
+/* Ajustement du contenu principal quand la sidebar est fermée */
+.sidebar.closed ~ .main-content {
+    margin-left: 0;
+}
+
+/* Bouton hamburger */
+.hamburger-menu {
+    position: absolute;
+    top: 120px;
+    left: 340px; /* Aligne avec la largeur de la sidebar */
+    background: #4f46e5;
+    color: white;
+    border: none;
+    font-size: 24px;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: left 0.3s ease;
+    z-index: 2;
+}
+
+@media (max-width: 600px) {
+    
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position:relative;
+        transform: translateY(0);
+    }
+    
+    .sidebar.closed {
+        transform: translateY(-200%);
+    }
+    
+    .hamburger-menu {
+        top: 20px;
+        left: 20px;
+    }
+    
+    .main-content {
+        padding: 15px;
+        margin-left: 0; /* Toujours sans marge à gauche */
+    }
 }

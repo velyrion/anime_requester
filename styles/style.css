@@ -1,3 +1,69 @@
+:root {
+    --base-color: #fffcfcb2;
+    --base-variant: #e8e9ed;
+    --text-color: #333;
+    --secondary-text-color: #232738;
+    --primary-color: #3a435d;
+    --accent-color: #0071ff;
+    --card-bg: #fff;
+    --sidebar-bg: #fff;
+}
+
+.darkmode {
+    --base-color: #070b1d;
+    --base-variant: #101425;
+    --text-color: #ffffff;
+    --secondary-text: #a4a5b8;
+    --primary-color: #3a435f;
+    --accent-color: #0071ff;
+    --card-bg: #151a2e;
+    --sidebar-bg: #0e1224;
+}
+
+
+
+/* ----- Switch de thème ----- */
+.theme-switch-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.material-icons {
+    font-size: 30px;
+    color: var(--text-color);
+}
+
+/* Masquer l'icône correspondante quand le thème change */
+#icon-moon {
+    display: block;
+}
+
+#icon-sun {
+    display: none;
+}
+
+.darkmode #icon-sun {
+    display: block;
+}
+
+.darkmode #icon-moon {
+    display: none;
+}
+
+h1, h2, h3, h4, h5, h6,
+p, span, label, legend,
+li, dt, dd, th, td,
+.button, .btn, .nav-title,
+.checkbox-container {
+  color: inherit;
+}
+
 /* ----- Reset basique ----- */
 * {
     margin: 0;
@@ -5,10 +71,13 @@
     box-sizing: border-box;
 }
 
+
+
+
 body {
     font-family: 'Segoe UI', sans-serif;
-    background-color: #f9f9f9;
-    color: #333;
+    background-color: var(--base-color);
+    color: var(--text-color);
     padding: 10px;
     line-height: 1.6;
 }

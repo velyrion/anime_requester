@@ -8,14 +8,20 @@
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="styles/filtreStyle.css">
     <link rel="stylesheet" href="styles/style_navbar.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
 </head>
-<body>
+<body class="darkmode">
     <header> 
         <nav class="navbar">
             <div class="nav-logo">
                 <img src="images/logo.png" alt="Anime Requester logo">
             </div>
             <h1 class="nav-title">Anime Requester</h1>
+            <button id="theme-switch" class="theme-switch-btn">
+                <i class="material-icons" id="icon-sun">wb_sunny</i>
+                <i class="material-icons" id="icon-moon">nightlight_round</i>
+            </button>
             <form class="nav-search" action="#" method="get">
                 <input type="search" name="q" placeholder="Rechercher un anime..." aria-label="Rechercher">
                 <button type="submit">Chercher</button>
@@ -23,12 +29,12 @@
         </nav>
     </header>
 
-    <section>
+    <section >
         <div class="container">
             <!-- Sidebar filtres -->
             <aside class="sidebar">
                 <h2>Filtres</h2>
-                <form id="filter-form" aria-label="Filtrer les animes" novalidate>
+                <form id="filter-form" aria-label="Filtrer les animes" novalidate >
                     <div class="filter-group">
                         <h3>Genres</h3>
                         <label class="checkbox-container">Action
@@ -91,5 +97,6 @@
 
     <script src="scripts/animeApi.js"></script>
     <script src="scripts/formulaire.js"></script>
+    <script src="scripts/darkmode.js"></script> 
 </body>
 </html>

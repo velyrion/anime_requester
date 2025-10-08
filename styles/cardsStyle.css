@@ -1,7 +1,7 @@
 /* Container global pour tes cards */
 #cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 550px); 
+  grid-template-columns: repeat(3, 1fr); 
   gap: 30px;
   margin: 40px;
 }
@@ -18,6 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-height: 400px;
 }
 
 /* Effet hover */
@@ -29,12 +30,12 @@
 /* Image */
 .card img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 16px;
-  display: block;
+  display: flex;
   margin-bottom: 15px;
   object-fit: cover;
-  max-height: 400px;
+  max-height: 450px;
 }
 
 /* Titre */
@@ -105,7 +106,7 @@
 /* Smartphones */
 @media (max-width: 600px) {
   #cards {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fit, 300px);
     gap: 15px;
     margin: 15px;
   }

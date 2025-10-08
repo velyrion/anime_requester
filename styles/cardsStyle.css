@@ -19,6 +19,7 @@
   flex-direction: column;
   align-items: center;
   min-height: 400px;
+  max-height: 650px;
 }
 
 /* Effet hover */
@@ -35,7 +36,6 @@
   display: flex;
   margin-bottom: 15px;
   object-fit: cover;
-  max-height: 450px;
 }
 
 /* Titre */

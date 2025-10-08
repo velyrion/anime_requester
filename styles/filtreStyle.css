@@ -99,6 +99,22 @@
     background-color: #3730a3;
 }
 
+.btn-reset {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #b346e5;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-reset:hover {
+    background-color: #9c3cc9;
+}
+
 /* Contenu principal */
 .main-content {
     flex: 1;

@@ -19,7 +19,7 @@
     transition: transform 0.3s ease; /* Transition pour l'ouverture/fermeture */
     z-index: 0;
 }
-
+/*
 .sidebar.closed {
     transform: translateX(-100%);
 }
@@ -27,7 +27,7 @@
 .sidebar.closed ~ .hamburger-menu {
     left: 20px;
 }
-
+*/
 /* Titre et groupes de filtres */
 .sidebar h2 {
     margin-bottom: 20px;
@@ -137,16 +137,16 @@
     transition: margin-left 0.3s ease; /* Transition pour ajuster le contenu */
 }
 
-/* Ajustement du contenu principal quand la sidebar est fermée */
+/* Ajustement du contenu principal quand la sidebar est fermée 
 .sidebar.closed ~ .main-content {
     margin-left: 0;
-}
+}*/
 
-/* Bouton hamburger */
+/* Bouton hamburger 
 .hamburger-menu {
     position: absolute;
     top: 120px;
-    left: 340px; /* Aligne avec la largeur de la sidebar */
+    left: 340px;  Aligne avec la largeur de la sidebar 
     background: #4f46e5;
     color: white;
     border: none;
@@ -157,6 +157,7 @@
     transition: left 0.3s ease;
     z-index: 2;
 }
+*/
 
 @media (max-width: 600px) {
     
@@ -173,11 +174,12 @@
     .sidebar.closed {
         transform: translateY(-200%);
     }
-    
+
+    /*
     .hamburger-menu {
         top: 20px;
         left: 20px;
-    }
+    }*/
     
     .main-content {
         padding: 15px;

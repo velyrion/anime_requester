@@ -10,7 +10,8 @@
 .card {
   position: relative; /* pour l'overlay */
   overflow: hidden;
-  background: #fff;
+  background: var(--card-bg);
+  color: var(--text-color);
   border-radius: 16px;
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
   padding: 25px;
@@ -46,6 +47,7 @@
   color: #222;
   z-index: 2;
   position: relative;
+  color: var(--text-color);
 }
 
 /* Overlay pour le descriptif */

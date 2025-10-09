@@ -1,14 +1,25 @@
+/* GET THE API KEY */
+const apiKeyInputs = document.querySelectorAll('input[name="api-key"]');
+
 /*API VARIABLES*/
-const apiKey = 'a98487f17emshf797434733b889cp124f03jsn461d3ecc651c';
 const url = 'https://anime-db.p.rapidapi.com/anime?page=1';
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': apiKey,
+		'x-rapidapi-key': apiKeyInputs[0].value,
 		'x-rapidapi-host': 'anime-db.p.rapidapi.com'
 	}
 };
-/*END OF API VARIABLES*/
+
+// change input apiKey -> change real apiKey
+apiKeyInputs.forEach(input => {
+    input.addEventListener('click', () => {
+        apiKey = input.value;
+        options.method = 'GET';
+        options.headers['x-rapidapi-key'] = apiKey;
+    });
+});
+/*END OF GET THE API KEY*/
 
 /*HTML VARIABLES*/
 const cards = document.getElementById("cards");

@@ -3,10 +3,13 @@
     display: flex;
     min-height: 100vh;
     margin: 1%;
+    transition: margin-left 0.3s ease; /* Transition pour ajuster le contenu */
+    z-index: 0;
 }
 
 /* Sidebar moderne */
 .sidebar {
+    overflow: hidden;
     width: 280px;
     padding: 30px;
     background-color: var(--sidebar-bg);
@@ -15,8 +18,19 @@
     box-shadow: 2px 0 8px rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
+    transition: transform 0.3s ease; /* Transition pour l'ouverture/fermeture */
+    z-index: 0;
+}
+/*
+.sidebar.closed {
+    transform: translateX(-100%);
 }
 
+.sidebar.closed ~ .hamburger-menu {
+    left: 20px;
+}
+*/
+/* Titre et groupes de filtres */
 .sidebar h2 {
     margin-bottom: 20px;
     font-size: 24px;
@@ -31,6 +45,7 @@
     color: var(--text-color);
 }
 
+/* Checkbox */
 .checkbox-container {
     display: block;
     position: relative;
@@ -86,7 +101,7 @@
     transform: rotate(45deg);
 }
 
-/* Bouton moderne */
+/* Boutons */
 .btn-apply {
     margin-top: 20px;
     padding: 10px 20px;
@@ -119,9 +134,53 @@
     background-color: #9c3cc99a;
 }
 
+.btn-reset {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #e5e5e5;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.btn-reset:hover {
+    background-color: #ccc;
+}
+
 /* Contenu principal */
 .main-content {
     flex: 1;
     padding: 30px;
+    transition: margin-left 0.3s ease; /* Transition pour ajuster le contenu */
+}
+
+@media (max-width: 600px) {
     
+    .container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        position:relative;
+        transform: translateY(0);
+    }
+    
+    .sidebar.closed {
+        transform: translateY(-200%);
+    }
+
+    /*
+    .hamburger-menu {
+        top: 20px;
+        left: 20px;
+    }*/
+    
+    .main-content {
+        padding: 15px;
+        margin-left: 0; /* Toujours sans marge à gauche */
+    }
 }

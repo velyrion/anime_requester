@@ -222,4 +222,34 @@ footer {
   }
 }
 
+/* Style pour le champ Classement */
+#rating-input {
+    display: block;
+    width: 100%;
+    max-width: 190px;
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    background: var(--base-variant);
+    color: var(--text-color);
+    margin: 8px 0 0 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#rating-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0,113,255,0.15);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 600px) {
+    #rating-input {
+        max-width: 100%;
+        font-size: 1em;
+    }
+}
+
 

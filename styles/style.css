@@ -143,4 +143,149 @@ footer {
     font-size: 0.9em;
 }
 
+/* --- Radio boutons API Key --- */
+.api-key-group {
+    margin: 30px 0 20px 0;
+    padding: 15px 20px;
+    background: var(--sidebar-bg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 350px;
+}
+
+.api-key-group h3 {
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+.radio-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1em;
+    cursor: pointer;
+    position: relative;
+    padding-left: 28px;
+}
+
+.radio-container input[type="radio"] {
+    opacity: 0;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.custom-radio {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 22px;
+    width: 22px;
+    background: var(--base-variant);
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    transition: border-color 0.2s;
+}
+
+.radio-container input[type="radio"]:checked + .custom-radio {
+    border-color: var(--accent-color);
+    background: var(--accent-color);
+}
+
+.custom-radio:after {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 6px;
+    top: 6px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: white;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.radio-container input[type="radio"]:checked + .custom-radio:after {
+    opacity: 1;
+}
+
+.api-key-group.api-key-horizontal {
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    max-width: none;
+    justify-content: center;
+}
+
+.api-key-group.api-key-horizontal h3 {
+    margin-bottom: 0;
+    margin-right: 18px;
+    font-size: 1.1em;
+}
+
+.api-key-group.api-key-horizontal .radio-container {
+    padding-left: 28px;
+    margin-bottom: 0;
+}
+
+/* Responsive pour les radios API Key */
+@media (max-width: 600px) {
+  .api-key-group.api-key-horizontal {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 12px 10px;
+  }
+  .api-key-group.api-key-horizontal h3 {
+    margin-bottom: 8px;
+    margin-right: 0;
+    text-align: left;
+  }
+  .api-key-group.api-key-horizontal .radio-container {
+    margin-bottom: 0;
+    padding-left: 28px;
+    font-size: 1em;
+  }
+}
+
+/* Style pour le champ Classement */
+#rating-input {
+    display: block;
+    width: 100%;
+    max-width: 190px;
+    padding: 8px 12px;
+    font-size: 1em;
+    border: 2px solid var(--primary-color);
+    border-radius: 6px;
+    background: var(--base-variant);
+    color: var(--text-color);
+    margin: 8px 0 0 0;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    box-sizing: border-box;
+}
+
+#rating-input:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(0,113,255,0.15);
+}
+
+/* Responsive pour mobile */
+@media (max-width: 600px) {
+    #rating-input {
+        max-width: 100%;
+        font-size: 1em;
+    }
+}
+
 

@@ -125,7 +125,7 @@ input[type="submit"]:hover {
 }
 
 #scroll-up-btn:hover {
-    transform: translateY(-5px) rotate(-10deg);
+    transform: translateY(-5px);
     background: #005bb5;
 }
 
@@ -133,8 +133,6 @@ input[type="submit"]:hover {
     opacity: 1;
     visibility: visible;
 }
-
-
 
 /* ----- Footer ----- */
 footer {

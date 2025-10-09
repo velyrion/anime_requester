@@ -31,44 +31,95 @@
                 <form id="filter-form" aria-label="Filtrer les animes" novalidate>
                     <div class="filter-group">
                         <h3>Genres</h3>
+                        <label class="checkbox-container">Primé
+                            <input type="checkbox" name="genre" value="Award Winning">
+                            <span class="checkmark"></span>
+                        </label>
                         <label class="checkbox-container">Action
-                            <input type="checkbox" name="genre" value="action">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="checkbox-container">Aventure
-                            <input type="checkbox" name="genre" value="adventure">
-                            <span class="checkmark"></span>
-                        </label>
-                        <label class="checkbox-container">Comédie
-                            <input type="checkbox" name="genre" value="comedy">
+                            <input type="checkbox" name="genre" value="Action">
                             <span class="checkmark"></span>
                         </label>
                         <label class="checkbox-container">Suspense
-                            <input type="checkbox" name="genre" value="suspense">
+                            <input type="checkbox" name="genre" value="Suspense">
                             <span class="checkmark"></span>
                         </label>
-                        <label class="checkbox-container">Drame
-                            <input type="checkbox" name="genre" value="drama">
+                        <label class="checkbox-container">Horreur
+                            <input type="checkbox" name="genre" value="Horror">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Ecchi
+                            <input type="checkbox" name="genre" value="Ecchi">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Avant Garde
+                            <input type="checkbox" name="genre" value="Avant Garde">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Sports
+                            <input type="checkbox" name="genre" value="Sports">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Super naturel
+                            <input type="checkbox" name="genre" value="Supernatural">
                             <span class="checkmark"></span>
                         </label>
                         <label class="checkbox-container">Fantasy
-                            <input type="checkbox" name="genre" value="fantasy">
+                            <input type="checkbox" name="genre" value="Fantasy">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Aventure
+                            <input type="checkbox" name="genre" value="Adventure">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Comédie
+                            <input type="checkbox" name="genre" value="Comedy">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Drame
+                            <input type="checkbox" name="genre" value="Drama">
                             <span class="checkmark"></span>
                         </label>
                         <label class="checkbox-container">Sci-Fi
-                            <input type="checkbox" name="genre" value="sci-fi">
+                            <input type="checkbox" name="genre" value="Sci-Fi">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Romance
+                            <input type="checkbox" name="genre" value="Romance">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Mystère
+                            <input type="checkbox" name="genre" value="Mystery">
                             <span class="checkmark"></span>
                         </label>
                         <label class="checkbox-container">Hentai
-                            <input type="checkbox" name="genre" value="hentai">
+                            <input type="checkbox" name="genre" value="Hentai">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Gourmet
+                            <input type="checkbox" name="genre" value="Gourmet">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Les garçon adorent
+                            <input type="checkbox" name="genre" value="Boys Love">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Les filles adorent
+                            <input type="checkbox" name="genre" value="Girls Love">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Tranches de vie
+                            <input type="checkbox" name="genre" value="Slice of Life">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-container">Erotique
+                            <input type="checkbox" name="genre" value="Erotica">
                             <span class="checkmark"></span>
                         </label>
                     </div>
 
                     <div class="filter-group">
-                        <h3>Classement minimum</h3>
-                        <input type="range" id="rating-slider" min="1" max="5000" value="1" step="100">
-                        <span id="rating-value">≥ 1</span>
+                        <h3>Classement</h3>
+                        <input type="text" id="rating-input" placeholder="Enter ranking number" />
                     </div>
 
                     <button type="submit" class="btn-apply">Appliquer</button>

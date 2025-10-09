@@ -1,8 +1,6 @@
-/* HTML Variables */
-const slider = document.getElementById('rating-slider');
-const ratingValue = document.getElementById('rating-value');
-
+// wait html load
 document.addEventListener('DOMContentLoaded', () => {
+  const ratingValue = document.getElementById('rating-input');
   const filterForm = document.getElementById('filter-form');
   const cardsContainer = document.getElementById('cards');
   const navSearchForm = document.querySelector('.nav-search');
@@ -24,36 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
   statusLine.textContent = 'Loading animes...';
   cardsContainer.parentElement.insertBefore(statusLine, cardsContainer);
 
-  /* Map form genre values to API genre names */
-  const apiGenreMap = {
-    action: 'Action',
-    comedy: 'Comedy',
-    drama: 'Drama',
-    fantasy: 'Fantasy',
-    'sci-fi': 'Sci-Fi'
-  };
-
-  const toApiGenre = genreValue => {
-    if (!genreValue) return '';
-    const trimmed = genreValue.trim().toLowerCase();
-    return apiGenreMap[trimmed] || trimmed.charAt(0).toUpperCase() + trimmed.slice(1);
-  };
-
   /* Current filter state */
   const filterState = {
     searchTerm: '',
     genres: [],
-    ratingMin: Number(slider.value),
-    size: 40,
+    rating: '', // Will be set from input
+    size: 9,
     sortBy: 'ranking',
     sortOrder: 'asc'
   };
-
-  /* Update rating slider label */
-  slider.addEventListener('input', () => {
-    ratingValue.textContent = `≥ ${slider.value}`;
-    filterState.ratingMin = Number(slider.value);
-  });
 
   /* Helper to show/hide status messages */
   const toggleStatus = message => {
@@ -63,31 +40,54 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* Refresh anime list based on current filters */
   const refreshList = async () => {
-    const apiGenres = filterState.genres.map(toApiGenre).filter(Boolean);
-    const requestUrl = getUrl(
-      filterState.searchTerm,
-      String(filterState.size),
-      apiGenres.join(','),
-      filterState.sortBy,
-      filterState.sortOrder
-    );
+    filterState.rating = ratingValue.value.trim();
+
+    let requestUrl;
+    let apiGenres = filterState.genres;
+
+    // Si un classement précis est demandé
+    if (filterState.rating !== '' && !isNaN(Number(filterState.rating))) {
+      const rankingNum = Number(filterState.rating);
+      const size = 1;
+      const page = rankingNum;
+      requestUrl = `https://anime-db.p.rapidapi.com/anime?page=${page}&size=${size}&sortBy=ranking&sortOrder=asc`;
+      // add genres
+      if (apiGenres.length) {
+        requestUrl += `&genres=${apiGenres.join('%2C')}`;
+      }
+    } else {
+      // getUrl 
+      requestUrl = getUrl(
+        filterState.searchTerm,
+        String(filterState.size),
+        apiGenres.join(','),
+        filterState.sortBy,
+        filterState.sortOrder
+      );
+    }
 
     toggleStatus('Loading animes...');
     cardsContainer.innerHTML = '';
 
     try {
       const animes = await getAnime(requestUrl) || [];
-      const selectedGenresLower = apiGenres.map(g => g.toLowerCase());
+      let filtered = animes;
 
-      /* Filter animes by slider rating and selected genres */
-      const filtered = animes.filter(anime => {
-        const ranking = Number(anime.ranking);
-        const matchesRating = !isNaN(ranking) && ranking >= filterState.ratingMin;
-        const matchesGenres = !selectedGenresLower.length || selectedGenresLower.every(
-          genre => anime.genres.some(g => g.toLowerCase() === genre)
-        );
-        return matchesRating && matchesGenres;
-      });
+      // Si on a demandé un classement précis, on vérifie que l'anime existe
+      if (filterState.rating !== '' && !isNaN(Number(filterState.rating))) {
+        filtered = animes.filter(anime => Number(anime.ranking) === Number(filterState.rating));
+      } else {
+        // Sinon, on filtre par genres comme avant
+        const selectedGenresLower = apiGenres.map(g => g.toLowerCase());
+        filtered = animes.filter(anime => {
+          const ranking = Number(anime.ranking);
+          const matchesRating = filterState.rating === '' || (!isNaN(ranking) && ranking == filterState.rating);
+          const matchesGenres = !selectedGenresLower.length || selectedGenresLower.every(
+            genre => anime.genres.some(g => g.toLowerCase() === genre)
+          );
+          return matchesRating && matchesGenres;
+        });
+      }
 
       if (!filtered.length) {
         toggleStatus('No animes match the selected filters.');
@@ -120,30 +120,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  /* Initial load */
-  refreshList();
-});
-
-const resetButton = document.getElementById('reset-filters');
-
-resetButton.addEventListener('click', () => {
-  // Reset genres checkboxes
-  const genreCheckboxes = filterForm.querySelectorAll('input[name="genre"]');
-  genreCheckboxes.forEach(cb => cb.checked = false);
+  // Reset all filters on page load
+  filterState.searchTerm = '';
   filterState.genres = [];
-
-  // Reset rating slider
-  slider.value = 7; // ou la valeur par défaut que tu veux
-  ratingValue.textContent = `≥ ${slider.value}`;
-  filterState.ratingMin = Number(slider.value);
-
-  // Reset search term
+  filterState.rating = '';
+  if (ratingValue) ratingValue.value = '';
+  if (filterForm) {
+    const genreCheckboxes = filterForm.querySelectorAll('input[name="genre"]');
+    genreCheckboxes.forEach(cb => cb.checked = false);
+  }
   if (navSearchForm) {
     const searchInput = navSearchForm.querySelector('input[type="search"]');
     if (searchInput) searchInput.value = '';
-    filterState.searchTerm = '';
   }
 
-  // Refresh the list
+  /* Initial load */
   refreshList();
+
+  const resetButton = document.getElementById('reset-filters');
+  if (resetButton) {
+    resetButton.addEventListener('click', () => {
+      // Reset genres checkboxes
+      const genreCheckboxes = filterForm.querySelectorAll('input[name="genre"]');
+      genreCheckboxes.forEach(cb => cb.checked = false);
+      filterState.genres = [];
+
+      // Reset rating input
+      ratingValue.value = '';
+      filterState.rating = '';
+
+      // Reset search term
+      if (navSearchForm) {
+        const searchInput = navSearchForm.querySelector('input[type="search"]');
+        if (searchInput) searchInput.value = '';
+        filterState.searchTerm = '';
+      }
+
+      // Refresh the list
+      refreshList();
+    });
+  }
 });

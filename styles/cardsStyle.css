@@ -3,7 +3,6 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   gap: 30px;
-  margin: 40px;
 }
 
 /* Style des cards */
@@ -116,13 +115,12 @@
   #cards {
     grid-template-columns: repeat(auto-fit, 300px);
     gap: 15px;
-    margin: 15px;
   }
   .card {
     padding: 15px;
   }
   .card img {
-    max-height: 250px;
+    max-height: auto;
   }
   .card h3 {
     font-size: 1.1rem;

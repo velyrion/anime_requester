@@ -1,3 +1,5 @@
+/* pour le darkmode*/
+
 :root {
     --base-color: #fffcfcb2;
     --base-variant: #e8e9ed;
@@ -22,7 +24,7 @@
 
 
 
-/* ----- Switch de thème ----- */
+/* Switch de thème  */
 .theme-switch-btn {
     background: none;
     border: none;
@@ -39,7 +41,7 @@
     color: var(--text-color);
 }
 
-/* Masquer l'icône correspondante quand le thème change */
+/*Masquer l'icône correspondante quand le thème change */
 #icon-moon {
     display: block;
 }
@@ -82,6 +84,8 @@ body {
     line-height: 1.6;
 }
 
+
+
 /* ----- Boutons ----- */
 input[type="submit"] {
     background-color: #2d2d70;
@@ -97,6 +101,40 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #1c1c4d;
 }
+
+#scroll-up-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease,transform 0.2s ease;
+    z-index: 1000;
+}
+
+#scroll-up-btn:hover {
+    transform: translateY(-5px) rotate(-10deg);
+    background: #005bb5;
+}
+
+#scroll-up-btn.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+
 
 /* ----- Footer ----- */
 footer {

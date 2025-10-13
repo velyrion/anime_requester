@@ -15,7 +15,7 @@
     <header> 
         <nav class="navbar">
             <div class="nav-logo">
-                <img src="images/logo.png" alt="Anime Requester logo" id="logo" onclick="document.location.reload(false)"></img>
+                <img src="images/logo.png" alt="Anime Requester logo" id="logo" onclick="document.location.reload(false)">
             </div>
             <h1 class="nav-title">Anime Requester</h1>
             <button id="theme-switch" class="theme-switch-btn">
@@ -29,6 +29,7 @@
         </nav>
     </header>
 
+    <main id="content" tabindex="-1">
     <!-- Place la sélection API Key ici, avant .container -->
     <div class="api-key-group api-key-horizontal">
         <h3>Choisissez votre API Key :</h3>
@@ -48,10 +49,9 @@
             Clé d'API Mathéo
         </label>
     </div>
-
-    <section >
         <div class="container">
-            <aside class="sidebar">
+
+            <aside class="sidebar" aria-label="Filtres">
                 <h2>Filtres</h2>
                 <form id="filter-form" aria-label="Filtrer les animes" novalidate >
                     <div class="filter-group">
@@ -149,28 +149,31 @@
 
                     <button type="submit" class="btn-apply">Appliquer</button>
                     <button type="button" id="reset-filters" class="btn-reset">Effacer</button>
+                
                 </form>
             </aside>
 
-            <main class="main-content">
+            <section class="main-content" aria-labelledby="results-title">
+                <h2 id="results-title" class="sr-only">Résultats</h2>
                 <div id="cards" class="cards-grid">
-                    <!-- Les cartes d'anime seront insérées ici -->
+                        <!-- Les cartes d'anime seront insérées ici -->
                 </div>
-            </main>
-        </div>
-        <button id="scroll-up-btn" >
-            <img src="images/flechehaut.svg" alt="fleche vers le haut"></img>
-        </button>
-    </section>
+            </section>
+            
+            <button id="scroll-up-btn" >
+                <img src="images/flechehaut.svg" alt="fleche vers le haut">
+            </button>
 
+        </div>
+    </main>
     <footer>
         © PARIS LEMPERRIERE Victor, ANTOINE Charly, DUCRET Mathéo
     </footer>
-
 
     <script src="scripts/animeApi.js"></script>
     <script src="scripts/formulaire.js"></script>
     <script src="scripts/darkmode.js"></script> 
     <script src="scripts/bouton_vershaut.js"></script>
+
 </body>
 </html>

@@ -6,14 +6,14 @@ const url = 'https://anime-db.p.rapidapi.com/anime?page=1';
 const options = {
 	method: 'GET',
 	headers: {
-		'x-rapidapi-key': apiKeyInputs[0].value,
+		'x-rapidapi-key': document.querySelector('input[name="api-key"]:checked').value,
 		'x-rapidapi-host': 'anime-db.p.rapidapi.com'
 	}
 };
 
 // change input apiKey -> change real apiKey
 apiKeyInputs.forEach(input => {
-    input.addEventListener('click', () => {
+    input.addEventListener('change', () => {
         apiKey = input.value;
         options.method = 'GET';
         options.headers['x-rapidapi-key'] = apiKey;
@@ -71,6 +71,4 @@ function addCards(animes) {
 
 /*END OF FONCTIONS*/
 
-/*getAnime(getUrl()).then(animes => {
-  addCards(animes);
-});*/
+//console.log(getAnime(getUrl()));

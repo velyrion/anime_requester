@@ -101,6 +101,10 @@
     transform: rotate(45deg);
 }
 
+#id_input{
+    margin-top: 10px;
+}
+
 /* Boutons */
 .btn-apply {
     margin-top: 20px;

@@ -259,7 +259,7 @@ footer {
 }
 
 /* Style pour le champ Classement */
-#rating-input {
+#rating-input, #id-input{
     display: block;
     width: 100%;
     max-width: 190px;
@@ -275,7 +275,7 @@ footer {
     box-sizing: border-box;
 }
 
-#rating-input:focus {
+#rating-input:focus, #id-input:focus{
     border-color: var(--accent-color);
     box-shadow: 0 0 0 2px rgba(0,113,255,0.15);
 }

@@ -60,13 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } else if (filterState.id !== '' && !isNaN(Number(filterState.id))) {
         // if filter by id
-        const size = 1;
-        console.log(filterState.id);
         requestUrl = `https://anime-db.p.rapidapi.com/anime/by-id/${filterState.id}`;
-        // add genres
-        if (apiGenres.length) {
-          requestUrl += `&genres=${apiGenres.join(',')}`;
-        }
     } else {
       // getUrl 
       requestUrl = getUrl(

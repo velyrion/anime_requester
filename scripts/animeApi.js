@@ -43,7 +43,7 @@ async function getAnime(url) {
     try {
         const response = await fetch(url, options);
         const result = await response.json();
-        return result.data;
+        return result.data || [result];
     } catch (error) {
         console.error(error);
     }

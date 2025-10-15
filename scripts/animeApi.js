@@ -13,7 +13,7 @@ const options = {
 
 // change input apiKey -> change real apiKey
 apiKeyInputs.forEach(input => {
-    input.addEventListener('click', () => {
+    input.addEventListener('change', () => {
         apiKey = input.value;
         options.method = 'GET';
         options.headers['x-rapidapi-key'] = apiKey;
